@@ -1,187 +1,101 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useState } from 'react';
+import { Calendar, Clock, Video, ArrowRight, X, Phone } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
-
-const bookingSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
-  message: z.string().optional(),
-});
-
-type BookingFormData = z.infer<typeof bookingSchema>;
 
 interface BookingModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [userInfo, setUserInfo] = useState<BookingFormData | null>(null);
-
-  const form = useForm<BookingFormData>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = (data: BookingFormData) => {
-    setUserInfo(data);
-    setFormSubmitted(true);
-    // Here you could also send the data to your backend
-    console.log("Booking info:", data);
-  };
-
-  const handleClose = () => {
-    setFormSubmitted(false);
-    setUserInfo(null);
-    form.reset();
-    onOpenChange(false);
-  };
+export default function BookingModal({ open, onOpenChange }: BookingModalProps) {
+  const [showCalendly, setShowCalendly] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl w-full max-h-[90vh] p-0 overflow-hidden">
-        {!formSubmitted ? (
-          <div className="overflow-y-auto max-h-[90vh] p-6">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Phone className="w-5 h-5" />
-                Schedule a Call
+    <>
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-2xl w-full p-0 overflow-hidden border-0">
+          <div className="bg-white dark:bg-background">
+            <DialogHeader className="px-6 pt-6 pb-4">
+              <DialogTitle className="flex items-center gap-2 text-2xl">
+                <Phone className="w-6 h-6 text-orange-500" />
+                Schedule a Consultation
               </DialogTitle>
-              <p className="text-sm text-muted-foreground mt-2">
-                Fill in your details below to book a meeting with Isaac. We'll confirm your slot shortly.
+              <p className="text-sm text-muted-foreground mt-2 text-left">
+                Book a 30-minute strategy session to discuss your goals and how I can help.
               </p>
             </DialogHeader>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <div className="px-6 pb-6 space-y-6">
+              <div className="bg-gradient-to-br from-blue-50 to-orange-50 dark:from-blue-950/30 dark:to-orange-950/30 rounded-lg p-6">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-foreground">30-Minute Meeting</h3>
+                      <p className="text-sm text-muted-foreground">Select a time that works for you</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Video className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-foreground">Online Meeting</h3>
+                      <p className="text-sm text-muted-foreground">Zoom, Google Meet, or Teams</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-foreground">Flexible Scheduling</h3>
+                      <p className="text-sm text-muted-foreground">Monday to Friday, 9AM-5PM</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="your@email.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
-                      <FormControl>
-                        <Input placeholder="+1 (555) 000-0000" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>What is this call about?</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="e.g., Entrepreneurship Training, Business Consultation"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Additional Message (Optional)</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Tell us more about your needs or questions..."
-                          className="resize-none"
-                          rows={4}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button type="submit" className="w-full">
-                  Continue to Calendar
-                </Button>
-              </form>
-            </Form>
+              <button
+                onClick={() => setShowCalendly(true)}
+                className="w-full px-6 py-3 bg-gradient-to-r from-blue-900 to-orange-500 hover:from-blue-800 hover:to-orange-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 group"
+              >
+                Book Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
-        ) : (
-          <div className="overflow-y-auto max-h-[90vh] p-0">
-            <iframe
-              src={`https://calendly.com/your-calendly-username?hide_event_type_details=1&hide_gdpr_banner=1&name=${encodeURIComponent(
-                userInfo?.name || ""
-              )}&email=${encodeURIComponent(userInfo?.email || "")}`}
-              width="100%"
-              height="600"
-              frameBorder="0"
-              title="Schedule a meeting with Isaac"
-            />
+        </DialogContent>
+      </Dialog>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 pointer-events-auto" onClick={() => setShowCalendly(false)}>
+          <div className="bg-white dark:bg-background rounded-xl w-full max-w-3xl h-[90vh] flex flex-col shadow-2xl pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white dark:bg-background p-4 border-b border-gray-200 dark:border-border flex justify-between items-center rounded-t-xl">
+              <h3 className="text-xl font-bold text-foreground">Schedule Your Call</h3>
+              <button
+                onClick={() => setShowCalendly(false)}
+                className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto" style={{ overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+              <iframe
+                src="https://calendly.com/isaac-tashlex/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Calendly Scheduling Widget"
+                style={{ border: 'none', display: 'block' }}
+                allow="geolocation; microphone; camera"
+              ></iframe>
+            </div>
           </div>
-        )}
-      </DialogContent>
-    </Dialog>
+        </div>
+      )}
+    </>
   );
-};
-
-export default BookingModal;
+}
