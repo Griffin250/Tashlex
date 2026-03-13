@@ -14,12 +14,12 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl flex-1"
+          className="max-w-3xl flex-1 w-full text-center lg:text-left"
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -37,7 +37,22 @@ const Hero = () => {
             Isaac Tashlex
           </h1>
 
-          <div className="flex flex-wrap gap-3 mb-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="lg:hidden flex justify-center mb-8"
+          >
+            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl overflow-hidden ring-4 ring-primary-foreground/20 shadow-2xl">
+              <img
+                src={isaacPhoto}
+                alt="Isaac Tashlex speaking at a conference"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          <div className="flex flex-wrap gap-3 mb-8 justify-center lg:justify-start">
             {["Entrepreneurship Trainer", "Business Development Specialist", "Innovation Ecosystem Builder"].map(
               (role, i) => (
                 <motion.span
