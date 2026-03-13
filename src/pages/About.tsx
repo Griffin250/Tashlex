@@ -1,6 +1,7 @@
 import SectionHeader from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Target, Heart, Globe, Lightbulb, Users, BookOpen, TrendingUp } from "lucide-react";
+import isaacPhoto from "@/assets/isaac-photo.png";
 
 const coreExpertise = [
   { icon: BookOpen, label: "Entrepreneurship Training" },
