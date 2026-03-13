@@ -57,11 +57,25 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="text-lg md:text-xl text-primary-foreground/80 mb-10 leading-relaxed max-w-2xl"
+            className="text-lg md:text-xl text-primary-foreground/80 mb-6 leading-relaxed max-w-2xl"
           >
-            Empowering entrepreneurs and youth to build sustainable businesses
-            and transformative solutions across Africa and beyond.
+            I'm an entrepreneurship trainer and innovation ecosystem builder based in Uganda. I work with universities, NGOs, innovation hubs, and development organizations to empower young people and startups with the skills, mindset, and tools required to build sustainable ventures.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 }}
+            className="mb-10"
+          >
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground font-semibold transition-colors group"
+            >
+              Read more about me
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
