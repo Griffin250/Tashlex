@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import isaacPhoto from "@/assets/isaac-photo.png";
 
 const Hero = () => {
   return (
@@ -13,11 +14,12 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl"
+          className="max-w-3xl flex-1"
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
