@@ -84,6 +84,22 @@ const Hero = () => {
             </Link>
           </motion.div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="hidden lg:block flex-shrink-0"
+        >
+          <div className="w-72 h-72 xl:w-80 xl:h-80 rounded-2xl overflow-hidden ring-4 ring-primary-foreground/20 shadow-2xl">
+            <img
+              src={isaacPhoto}
+              alt="Isaac Tashlex speaking at a conference"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
+        </div>
       </div>
     </section>
   );

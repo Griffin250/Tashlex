@@ -20,6 +20,25 @@ const About = () => {
         <div className="max-w-7xl mx-auto">
           <SectionHeader label="About" title="Who I Am" />
 
+          {/* Photo + bio row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 mb-12"
+          >
+            <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shrink-0 ring-4 ring-accent/20 shadow-lg">
+              <img src={isaacPhoto} alt="Isaac Tashlex" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h3 className="font-heading text-2xl font-bold text-foreground mb-2">Isaac Tashlex</h3>
+              <p className="text-secondary font-semibold mb-3">Entrepreneurship Trainer · Ecosystem Builder · Uganda</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Empowering entrepreneurs and youth to build sustainable businesses and transformative solutions across Africa and beyond.
+              </p>
+            </div>
+          </motion.div>
+
           <div className="grid lg:grid-cols-5 gap-12">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
