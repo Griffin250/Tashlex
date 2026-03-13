@@ -48,13 +48,13 @@ const About = () => {
             >
               <div className="prose max-w-none">
                 <p className="text-lg text-foreground leading-relaxed mb-6">
-                  Isaac Tashlex is an entrepreneurship trainer and innovation ecosystem builder based in Uganda. He works with universities, NGOs, innovation hubs, and development organizations to empower young people and startups with the skills, mindset, and tools required to build sustainable ventures.
+                  I'm an entrepreneurship trainer and innovation ecosystem builder based in Uganda. I work with universities, NGOs, innovation hubs, and development organizations to empower young people and startups with the skills, mindset, and tools required to build sustainable ventures.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  He has contributed to entrepreneurship programs across Africa and internationally, including delivering professional development training through Hope Innovation Academy and supporting social innovation initiatives connected to the Social Innovation Academy network.
+                  I've contributed to entrepreneurship programs across Africa and internationally, including delivering professional development training through Hope Innovation Academy and supporting social innovation initiatives connected to the Social Innovation Academy network.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  His mission is to nurture the next generation of entrepreneurs capable of solving real-world problems through innovation, leadership, and enterprise development.
+                  My mission is to nurture the next generation of entrepreneurs capable of solving real-world problems through innovation, leadership, and enterprise development.
                 </p>
               </div>
             </motion.div>
