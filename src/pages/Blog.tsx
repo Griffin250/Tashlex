@@ -2,6 +2,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { blogPosts } from "@/data/blogPosts";
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   return (
@@ -15,24 +16,27 @@ const Blog = () => {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post, i) => (
-              <motion.article
+              <motion.div
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-card rounded-xl p-6 card-hover group cursor-pointer"
               >
-                <span className="text-xs font-semibold text-accent uppercase tracking-wider">{post.category}</span>
-                <h3 className="font-heading text-xl font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{post.excerpt}</p>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <BookOpen size={12} />
-                  {post.readTime} · {post.date}
-                </div>
-              </motion.article>
+                <Link to={`/blog/${post.id}`} className="block group h-full">
+                  <article className="bg-card rounded-xl p-6 card-hover group cursor-pointer h-full flex flex-col transition-all duration-300">
+                    <span className="text-xs font-semibold text-accent uppercase tracking-wider">{post.category}</span>
+                    <h3 className="font-heading text-xl font-bold text-foreground mt-2 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-grow line-clamp-3">{post.excerpt}</p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <BookOpen size={12} />
+                      {post.readTime} · {post.date}
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>

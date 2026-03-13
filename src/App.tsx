@@ -13,6 +13,7 @@ import Impact from "./pages/Impact";
 import Programs from "./pages/Programs";
 import Speaking from "./pages/Speaking";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/programs" element={<Programs />} />
           <Route path="/speaking" element={<Speaking />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
