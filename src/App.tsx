@@ -22,6 +22,7 @@ const App = () => (
     <TooltipProvider>
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
