@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import isaacPhoto from "@/assets/isaac-photo.png";
 
 const Hero = () => {
   return (
@@ -13,11 +14,12 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl"
+          className="max-w-3xl flex-1"
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -82,6 +84,22 @@ const Hero = () => {
             </Link>
           </motion.div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="hidden lg:block flex-shrink-0"
+        >
+          <div className="w-72 h-72 xl:w-80 xl:h-80 rounded-2xl overflow-hidden ring-4 ring-primary-foreground/20 shadow-2xl">
+            <img
+              src={isaacPhoto}
+              alt="Isaac Tashlex speaking at a conference"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </motion.div>
+        </div>
       </div>
     </section>
   );
